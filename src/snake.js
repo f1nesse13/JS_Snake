@@ -1,15 +1,15 @@
 class Snake {
   constructor() {
-    this.direction = 'W';
-    this.segments = [[5, 10], [6, 10], [7, 10]];
+    this.direction = 'E';
+    this.segments = [[3, 10], [2, 10], [1, 10]];
   }
 }
 
 Snake.DIRS = {
-  N: [0, -1],
-  E: [1, 0],
-  S: [0, 1],
-  W: [-1, 0]
+  N: [-1, 0],
+  E: [0, 1],
+  S: [1, 0],
+  W: [0, -1]
 };
 
 Snake.prototype.move = function() {
@@ -24,6 +24,13 @@ Snake.prototype.move = function() {
   }
 };
 
+Snake.prototype.validMove = function(pos) {
+  if (this.segments.includes(pos) || pos[0] > 19 || pos[0] < 0 || pos[1] > 19 || pos[1] < 0) {
+    return false;
+  }
+  return true;
+};
+
 Snake.prototype.addCoord = function(position, increaseBy) {
   const posX = position[0] + increaseBy[0];
   const posY = position[1] + increaseBy[1];
@@ -33,3 +40,7 @@ Snake.prototype.addCoord = function(position, increaseBy) {
 Snake.prototype.turn = function(direction) {
   this.direction = direction.toUpperCase();
 };
+
+Snake.prototype.apple = function() {};
+
+module.exports = Snake;

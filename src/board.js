@@ -1,7 +1,10 @@
+const Snake = require('./snake.js');
+
 class Board {
   constructor() {
     this.board = [];
-    // this.snake = new Snake();
+    this.snake = new Snake();
+    this.createBoard();
   }
 }
 
@@ -17,6 +20,7 @@ Board.prototype.createBoard = function() {
 };
 
 Board.prototype.position = function(pos) {
+  // returns a board position when passed an Array with x,y coords
   const posX = pos[0];
   const posY = pos[1];
 
@@ -24,6 +28,7 @@ Board.prototype.position = function(pos) {
 };
 
 Board.prototype.randomPos = function() {
+  // returns a random board position
   const posX = Math.floor(Math.random() * 20);
   const posY = Math.floor(Math.random() * 20);
 
