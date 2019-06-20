@@ -9,7 +9,7 @@ class View {
     this.render();
     setInterval(() => {
       this.step();
-    }, 1000);
+    }, 200);
   }
 }
 
@@ -49,10 +49,6 @@ View.prototype.keyHandler = function() {
       default:
         break;
     }
-    // const buttonPressed = e.which;
-    // if (View.KEYS.buttonPressed !== undefined) {
-    //   this.board.snake.direction = View.KEYS.buttonPressed;
-    // }
   });
 };
 
@@ -71,12 +67,26 @@ View.prototype.render = function() {
   this.board.snake.segments.forEach(pos => {
     $(`ul:nth-of-type(${pos[0]}) li:nth-of-type(${pos[1]})`).addClass('selected');
   });
+  $(`ul:nth-of-type(${this.board.apple[0]}) li:nth-of-type(${this.board.apple[1]})`).addClass(
+    'apple'
+  );
 };
 
 View.prototype.step = function() {
   const posX = this.board.snake.segments[this.board.snake.segments.length - 1][0];
   const posY = this.board.snake.segments[this.board.snake.segments.length - 1][1];
   $(`ul:nth-of-type(${posX}) li:nth-of-type(${posY})`).removeClass('selected');
+  if (
+    this.board.snake.segments[0][0] === this.board.apple[0] &&
+    this.board.snake.segments[0][1] === this.board.apple[1]
+  ) {
+    $(`ul:nth-of-type(${this.board.apple[0]}) li:nth-of-type(${this.board.apple[1]})`).removeClass(
+      'apple'
+    );
+    this.board.generateApple();
+    this.board.snake.segments.push(this.board.apple);
+  }
+
   this.board.snake.move();
   this.render();
 };

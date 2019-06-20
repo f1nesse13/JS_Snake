@@ -4,7 +4,9 @@ class Board {
   constructor() {
     this.board = [];
     this.snake = new Snake();
+    this.apple = [];
     this.createBoard();
+    this.generateApple();
   }
 }
 
@@ -33,6 +35,12 @@ Board.prototype.randomPos = function() {
   const posY = Math.floor(Math.random() * 20);
 
   return [posX, posY];
+};
+
+Board.prototype.generateApple = function() {
+  // apple places a apple at a random spot to be collected
+  const applePos = this.randomPos();
+  this.apple = applePos;
 };
 
 module.exports = Board;

@@ -25,8 +25,16 @@ Snake.prototype.move = function() {
 };
 
 Snake.prototype.validMove = function(pos) {
-  if (this.segments.includes(pos) || pos[0] > 19 || pos[0] < 0 || pos[1] > 19 || pos[1] < 0) {
+  if (pos[0] > 19 || pos[0] < 0 || pos[1] > 19 || pos[1] < 0) {
     return false;
+  }
+  for (let i = 1; i < this.segments.length; i++) {
+    if (
+      this.segments[0][0] === this.segments[i][0] &&
+      this.segments[0][1] === this.segments[i][1]
+    ) {
+      return false;
+    }
   }
   return true;
 };
@@ -40,7 +48,5 @@ Snake.prototype.addCoord = function(position, increaseBy) {
 Snake.prototype.turn = function(direction) {
   this.direction = direction.toUpperCase();
 };
-
-Snake.prototype.apple = function() {};
 
 module.exports = Snake;
