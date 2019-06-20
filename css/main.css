@@ -1,0 +1,55 @@
+body,
+figure,
+h1,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  font-family: 'Lato';
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.root {
+  display: inline-block;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+  height: 400px;
+  border: 10px solid black;
+
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+li {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.selected {
+  background-color: rgb(8, 223, 201);
+  border-radius: 5px;
+}
+
+.apple {
+  background-color: rgb(255, 0, 0);
+  border-radius: 5px;
+}
